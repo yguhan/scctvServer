@@ -25,16 +25,13 @@ public class sServer implements Runnable{
 	public void run(){
 		try{
 			System.out.println("Starting sCCTV Server");
-			ServerSocket serverSocket = new ServerSocket(350);
-			System.out.println("Listening port : 350");
+			ServerSocket serverSocket = new ServerSocket(450);
+			System.out.println("Listening port : 450");
 			
 			while(true){
 				Socket socket = serverSocket.accept();
 				ServerReceiver receiver = new ServerReceiver(socket);
 	            receiver.start();
-				System.out.println(getTime() + 
-						"host: "+ socket.getInetAddress()+
-						", port: "+socket.getPort());
 			}
 			
 		}catch(IOException e){
@@ -54,6 +51,9 @@ public class sServer implements Runnable{
  
         public ServerReceiver(Socket socket) {
             this.socket = socket;
+            System.out.println(getTime() + 
+					"host: "+ socket.getInetAddress()+
+					", port: "+socket.getPort());
         }
  
         @Override
